@@ -28,6 +28,10 @@ const productSchema = mongoose.Schema({
     share_link: {
         type: String,
     },
+    rating: {
+        type: Number,
+        default: 0,
+    },
     care_data: {
         water: {
             type: String,

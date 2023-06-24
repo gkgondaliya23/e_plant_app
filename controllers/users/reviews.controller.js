@@ -1,8 +1,19 @@
 const Reviews = require('../../models/reviews.model');
+const User = require('../../models/user.model');
+const Product = require('../../models/product.model');
 
 exports.addToReview = async (req, res) => {
     try {
         const { product, rating, desc } = req.body;
+        const user = await Reviews.find({user: req.params.userId});
+
+        const ratingProduct = user.map(products =>({
+            product: products.product._id,
+        })) 
+
+        if(ratingProduct){
+            await Reviews.deleteOne({user: req.params.userId});
+        }
         const reviews = new Reviews({
             user: req.params.userId,
             product,
