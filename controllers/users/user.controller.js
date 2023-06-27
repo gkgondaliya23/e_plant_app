@@ -39,3 +39,20 @@ exports.logout = async (req, res) => {
     res.redirect('/login');
   });
 };
+
+exports.updateUser = async (req, res) => {
+  try {
+    const id = req.session.user._id;
+    const user = await User.findById(id);
+    if(!user) {
+      return res.status(404).json({ message: 'User not Found' });
+    }
+
+    const updateUser = await User.findByIdAndUpdate(user._id, {$set:req.body})
+    updateUser.save();
+    res.status(200).json({ message: 'User updated...' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message: 'server error'});
+  }
+};

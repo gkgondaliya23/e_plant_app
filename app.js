@@ -35,14 +35,14 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('public'));
 
 // routes
-// app.use('/auth', authRoutes);
-// app.use('/', userRoutes);
-app.use('/admins', adminProductRoutes);
-app.use('/home', userProductRoutes);
-app.use('/user/cart', userCartRoutes);
-app.use('/user', userOrdersRoutes);
-app.use('/favorite', userFavoriteRoutes);
-app.use('/review', userReviewsRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/admins', adminProductRoutes);
+app.use('/api/home', userProductRoutes);
+app.use('/api/user/cart', userCartRoutes);
+app.use('/api/user/order', userOrdersRoutes);
+app.use('/api/favorite', userFavoriteRoutes);
+app.use('/api/reviews', userReviewsRoutes);
 
 // server
 app.listen(port, (err) => {
